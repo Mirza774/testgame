@@ -33,6 +33,7 @@ export interface Option {
 
 export interface Stage {
   id: string;
+  scene: string;
   chapter: number;
   title: Localized;
   introA: Localized[];
@@ -208,6 +209,7 @@ export function buildStages(state: RoomState): Stage[] {
   return [
     {
       id: "arrival-letter",
+      scene: "letter",
       chapter: 1,
       title: L("Surat tanpa pengirim", "The letter with no sender"),
       introA: [
@@ -243,6 +245,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "arrival-clock",
+      scene: "hall",
       chapter: 1,
       title: L("Jam tiga jarum", "The clock with three hands"),
       introA: [
@@ -279,6 +282,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "arrival-child",
+      scene: "hall",
       chapter: 1,
       title: L("Anak di tangga", "The child on the stairs"),
       introA: [
@@ -315,6 +319,7 @@ export function buildStages(state: RoomState): Stage[] {
 
     {
       id: "memory-portrait",
+      scene: "portrait",
       chapter: 2,
       title: L("Empat wajah", "Four faces"),
       introA: [
@@ -350,6 +355,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "memory-calendar",
+      scene: "living",
       chapter: 2,
       title: L("Tanggal yang dilingkari", "The circled dates"),
       introA: [
@@ -385,6 +391,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "memory-dining",
+      scene: "living",
       chapter: 2,
       title: L("Meja makan", "The dining table"),
       introA: [
@@ -421,6 +428,7 @@ export function buildStages(state: RoomState): Stage[] {
 
     {
       id: "girl-lullaby",
+      scene: "child",
       chapter: 3,
       title: L("Nina bobo yang salah", "The wrong lullaby"),
       introA: [
@@ -460,6 +468,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "girl-doll",
+      scene: "child",
       chapter: 3,
       title: L("Boneka dan coretan", "The doll and the scratches"),
       introA: [
@@ -495,6 +504,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "girl-voice",
+      scene: "radio",
       chapter: 3,
       title: L("Suara di radio", "The voice on the radio"),
       introA: [
@@ -539,6 +549,7 @@ export function buildStages(state: RoomState): Stage[] {
 
     {
       id: "experiment-dials",
+      scene: "lab",
       chapter: 4,
       title: L("Tiga panel analog", "Three analog panels"),
       introA: [
@@ -574,6 +585,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "experiment-records",
+      scene: "lab",
       chapter: 4,
       title: L("Rekaman yang dipulihkan", "The restored recordings"),
       introA: [
@@ -610,6 +622,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "experiment-mimic",
+      scene: "the-other",
       chapter: 4,
       title: L("Suara yang meniru", "The mimicking voice"),
       introA: [
@@ -655,6 +668,7 @@ export function buildStages(state: RoomState): Stage[] {
 
     {
       id: "imitation-private",
+      scene: "memory",
       chapter: 5,
       title: L("Dua versi dirimu", "Two versions of you"),
       introA: [
@@ -696,6 +710,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "imitation-vote",
+      scene: "memory",
       chapter: 5,
       title: L("Manusia yang mana", "Which one is human"),
       introA: [
@@ -739,6 +754,7 @@ export function buildStages(state: RoomState): Stage[] {
     },
     {
       id: "imitation-trust",
+      scene: "the-other",
       chapter: 5,
       title: L("Siapa yang kau dengar", "Who you listen to"),
       introA: [

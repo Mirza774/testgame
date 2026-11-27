@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 export type SceneKey =
@@ -53,15 +54,18 @@ export function PainterlyScene({
   scene,
   era = "past",
   intensity = 0,
+  bright = false,
   className,
   children,
 }: {
   scene: SceneKey;
   era?: "past" | "present" | "memory";
   intensity?: number;
+  bright?: boolean;
   className?: string;
   children?: React.ReactNode;
 }) {
+  const grainId = useId().replace(/:/g, "");
   const warmth =
     era === "past"
       ? "sepia(0.18) saturate(0.92) contrast(1.04)"
@@ -85,7 +89,7 @@ export function PainterlyScene({
         className="absolute inset-0 bg-cover bg-center transition-[filter,transform] duration-1000"
         style={{
           backgroundImage: `url('/art/${scene}.jpg'), ${FALLBACKS[scene]}`,
-          filter: `${warmth} ${distortion}`.trim(),
+          filter: `${warmth} ${distortion}${bright ? " brightness(1.28)" : ""}`.trim(),
           transform: `scale(${1 + intensity * 0.025})`,
         }}
       />
@@ -94,8 +98,9 @@ export function PainterlyScene({
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(115% 90% at 50% 38%, transparent 36%, rgba(0,0,0,0.42) 78%, rgba(0,0,0,0.78) 100%)",
+          background: bright
+            ? "radial-gradient(115% 90% at 50% 38%, transparent 48%, rgba(0,0,0,0.18) 82%, rgba(0,0,0,0.45) 100%)"
+            : "radial-gradient(115% 90% at 50% 38%, transparent 36%, rgba(0,0,0,0.42) 78%, rgba(0,0,0,0.78) 100%)",
         }}
       />
 
@@ -103,7 +108,7 @@ export function PainterlyScene({
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full mix-blend-overlay opacity-[0.16]"
       >
-        <filter id={`scene-grain-${scene}`}>
+        <filter id={`scene-grain-${grainId}`}>
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.72"
@@ -112,7 +117,7 @@ export function PainterlyScene({
           />
           <feColorMatrix type="saturate" values="0" />
         </filter>
-        <rect width="100%" height="100%" filter={`url(#scene-grain-${scene})`} />
+        <rect width="100%" height="100%" filter={`url(#scene-grain-${grainId})`} />
       </svg>
 
       {intensity >= 2 && (

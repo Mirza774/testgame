@@ -30,6 +30,7 @@ function StageCard({ stage, index }: { stage: Stage; index: number }) {
   const label = role === "A" ? stage.labelA : stage.labelB;
   const options = role === "A" ? stage.optionsA : stage.optionsB;
   const accepted = role === "A" ? stage.answerA : stage.answerB;
+  const era = stage.chapter === 5 ? "memory" : role === "A" ? "past" : "present";
 
   function submit() {
     if (solved || !value.trim()) return;
@@ -76,6 +77,19 @@ function StageCard({ stage, index }: { stage: Stage; index: number }) {
           </span>
         )}
       </div>
+
+      <PainterlyScene
+        scene={stage.scene as SceneKey}
+        era={era}
+        bright
+        className="mt-3 h-44 rounded-sm sm:h-52"
+      >
+        <div className="flex h-full items-end p-3">
+          <span className="border border-bone/15 bg-ink/70 px-2 py-1 font-mono text-[8px] uppercase tracking-[0.2em] text-bone/55">
+            {t(lang, "hud.clues")}
+          </span>
+        </div>
+      </PainterlyScene>
 
       {!locked && (
         <>
